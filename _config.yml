@@ -1,0 +1,6 @@
+encoding: UTF-8
+
+exclude:
+  - CNAME
+  - LICENSE
+  - README.md

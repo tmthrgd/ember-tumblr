@@ -1,0 +1,184 @@
+@import "bootstrap.less";
+
+a:active, a:hover, a:focus {
+	border-bottom: thin dotted;
+	outline: none;
+	text-decoration: none;
+}
+
+@media (min-width: @screen-sm-min) {
+	.page-header {
+		background: #fff;
+		position: sticky;
+		//margin-top: 25px;
+		top: 0;
+	}
+}
+
+.page-header, .page-footer, .sub-header, .sub-footer {
+	.text-center;
+	.container;
+}
+
+.page-header h1 {
+	margin-bottom: 20px;
+	
+	a {
+		transition: text-shadow 0.1s;
+		
+		&:active, &:hover, &:focus {
+			color: #800080;
+			text-shadow: 2px 0 #df8181, -2px 0 #54d2cb, 0 1px #df8181, 0 -1px #54d2cb;
+		}
+	}
+}
+
+.page-nav, .pagnation {
+	ul {
+		.list-inline;
+	}
+}
+
+.pagnation {
+	.previous-page a:before {
+		content: '« ';
+	}
+	
+	.next-page a:after {
+		content: ' »';
+	}
+}
+
+.sub-header h2 {
+	&.tag, &.type {
+		.text-muted;
+	}
+	
+	&.tag:before {
+		content: '#';
+	}
+}
+
+@media print {
+	.pagnation {
+		.previous-page, .next-page {
+			display: none;
+		}
+	}
+	
+	pre, blockquote {
+		page-break-inside: avoid;
+	}
+}
+
+.posts {
+	.container;
+}
+
+.post {
+	border-bottom: thin solid @page-header-border-color;
+	padding: 5px 0;
+	margin: 10px 0;
+	
+	&.photo .caption {
+		.text-left;
+		
+		margin-top: 10px;
+	}
+	
+	&.photo, &.photoset {
+		.post-body {
+			.text-center;
+		}
+	}
+	
+	&.photo, &.photoset {
+		.post-body img {
+			height: auto;
+			max-width: 100%;
+			
+			page-break-inside: avoid;
+		}
+	}
+	
+	&.quote {
+		blockquote {
+			margin-bottom: 10px;
+			font-size: floor(@font-size-base * 1.25);
+			
+			&:before {
+				content: '“';
+			}
+			
+			&:after {
+				content: '”';
+			}
+		}
+		
+		.source:before {
+			content: '— '
+		}
+	}
+	
+	&.link h2.link a:after {
+		content: ' »';
+	}
+	
+	&.chat {
+		.dialogue {
+			.list-unstyled;
+		}
+		
+		.chat-label {
+			font-weight: bold;
+		}
+	}
+}
+
+.post-header h2:first-of-type {
+	.text-center;
+	
+	margin-top: 0;
+}
+
+.post-footer {
+	margin-top: 10px;
+	
+	> ul {
+		.list-inline;
+		.text-center;
+	}
+	
+	ul {
+		margin: 0;
+	}
+	
+	.tags { 
+		ul {
+			.list-inline;
+		}
+		
+		li {
+			&:after {
+				content: ', ';
+			}
+			
+			&:last-of-type:after {
+				content: '';
+			}
+		}
+		
+		a:before {
+			content: '#';
+		}
+	}
+}
+
+@media (min-width: @screen-sm-min) {
+	.post {
+		&:not(.photo):not(.photoset) .post-body, &.photo .caption {
+			padding-left: 10%;
+			padding-right: 10%;
+		}
+	}
+}
