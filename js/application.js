@@ -55,7 +55,7 @@ App = Ember.Application.create({
 	APIKey: Ember.get(document.location.search.match(/[?&]api[-_]?key=([^=&]*)/i), 'lastObject')
 		|| 'ggWYZV0WaQDRrggUm8UyHxYFkghahFieYNzbb8SFuakzSwF4PC',
 	host: Ember.get(document.location.search.match(/[?&]host=([^=&]*)/i), 'lastObject')
-		|| 'tomthorogood.tumblr.com',
+		|| 'example.tumblr.com',
 	cachePages: [ '0', 'false' ].indexOf(Ember.get(document.location.search.match(/[?&]cache[-_]?pages=([^=&]+)/i), 'lastObject')) === -1,
 	
 	// Remove these if using ember.min.js (or ember.prod.js), i.e. if using a production environment
