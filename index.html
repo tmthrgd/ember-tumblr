@@ -3,29 +3,9 @@
 <head>
 	<meta charset=utf-8>
 	<title></title>
-<!--
-  (__) |  (__) |  (__) |  (__) |  (__) |  (__) |
-  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |
-  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |
-––––––––––––––––––––––––––––––––––––––––––––––––
-  (__) |  (__) |  (__) |  (__) |  (__) |  (__) |
-  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |
-  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |
-––––––––––––––––––––––––––––––––––––––––––––––––
-  (__) |  (__) |  (__) |  (__) |  (__) |  (__) |
-  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |
-  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |
-––––––––––––––––––––––––––––––––––––––––––––––––
-  (__) |  (__) |  (__) |  (__) |  (__) |  (__) |
-  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |  ( oo |
-  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |  /\_| |
-––––––––––––––––––––––––––––––––––––––––––––––––
-             Andy Warcow Original
-           http://instinct.org/cows/
--->
 	<link rel=stylesheet/less href=less/style.less>
 	<script>less = { env: 'production' }</script>
-	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js></script>
+	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/less.js/2.4.0/less.min.js></script>
 	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js></script>
 	<script defer src=js/prefixfree.dynamic-dom.min.js></script>
 </head>
@@ -37,9 +17,9 @@
 			<nav class=page-nav>
 				<ul>
 					{{#if blog.isNsfw}}<li>{{i18n 'nsfw'}}</li>{{/if}}
-					{{#if blog.ask}}<li><a {{bind-attr href='askHref'}}>{{blog.askPageTitle}}</a></li>{{/if}}
-					{{#if blog.url}}<li><a {{bind-attr href='blog.url'}}>{{i18n 'onTumblr'}}</a></li>{{/if}}
-					{{#if followHref}}<li><a {{bind-attr href='followHref'}}>{{i18n 'follow'}}</a></li>{{/if}}
+					{{#if blog.ask}}<li><a href="{{ askHref }}">{{blog.askPageTitle}}</a></li>{{/if}}
+					{{#if blog.url}}<li><a href="{{ blog.url }}">{{i18n 'onTumblr'}}</a></li>{{/if}}
+					{{#if followHref}}<li><a href="{{ followHref }}">{{i18n 'follow'}}</a></li>{{/if}}
 				</ul>
 			</nav>
 		</header>
@@ -52,9 +32,9 @@
 			<nav class=page-nav>
 				<ul>
 					{{#if blog.isNsfw}}<li>{{i18n 'nsfw'}}</li>{{/if}}
-					{{#if blog.ask}}<li><a {{bind-attr href='askHref'}}>{{blog.askPageTitle}}</a></li>{{/if}}
-					{{#if blog.url}}<li><a {{bind-attr href='blog.url'}}>{{i18n 'onTumblr'}}</a></li>{{/if}}
-					{{#if followHref}}<li><a {{bind-attr href='followHref'}}>{{i18n 'follow'}}</a></li>{{/if}}
+					{{#if blog.ask}}<li><a href="{{ askHref }}">{{blog.askPageTitle}}</a></li>{{/if}}
+					{{#if blog.url}}<li><a href="{{ blog.url }}">{{i18n 'onTumblr'}}</a></li>{{/if}}
+					{{#if followHref}}<li><a href="{{ followHref }}">{{i18n 'follow'}}</a></li>{{/if}}
 				</ul>
 			</nav>
 		</footer>
@@ -68,9 +48,9 @@
 		<footer class=sub-footer>
 			<nav class=pagnation>
 				<ul>
-					{{#unless isFirstPage}}<li class=previous-page><a {{bind-attr href='previousPageHref'}}>{{i18n 'previousPage'}}</a></li>{{/unless}}
+					{{#unless isFirstPage}}<li class=previous-page><a href="{{ previousPageHref }}">{{i18n 'previousPage'}}</a></li>{{/unless}}
 					<li class=current-page>{{i18n 'currentPage' page numPages argument0='page' argument1='numPages'}}</li>
-					{{#unless isLastPage}}<li class=next-page><a {{bind-attr href='nextPageHref'}}>{{i18n 'nextPage'}}</a></li>{{/unless}}
+					{{#unless isLastPage}}<li class=next-page><a href="{{ nextPageHref }}">{{i18n 'nextPage'}}</a></li>{{/unless}}
 				</ul>
 			</nav>
 		</footer>
@@ -117,9 +97,9 @@
 			<div class=post-body>
 				{{#link-to 'post' this}}
 					{{#if view.image.nullWidth}}
-					<img {{bind-attr src='view.image.url'}} {{bind-attr alt='caption'}}>
+					<img src="{{ view.image.url }}" alt="{{ caption }}">
 					{{else}}
-					<img {{bind-attr src='view.image.url'}} {{bind-attr width='view.image.width'}} {{bind-attr height='view.image.height'}} {{bind-attr alt='caption'}}>
+					<img src="{{ view.image.url }}" width="{{ view.image.width }}" height="{{ view.image.height }}" alt="{{ caption }}">
 					{{/if}}
 				{{/link-to}}
 				
@@ -132,11 +112,11 @@
 			<div class=post-body>
 				{{#each view.images}}
 				{{!#link-to 'post' view.post}}
-				<a {{bind-attr href='url'}}>
+				<a href="{{ url }}">
 					{{#if nullWidth}}
-					<img {{bind-attr src='url'}} {{bind-attr title='caption'}} {{bind-attr alt='caption'}}>
+					<img src="{{ url }}" title="{{ caption }}" alt="{{ caption }}">
 					{{else}}
-					<img {{bind-attr src='url'}} {{bind-attr width='width'}} {{bind-attr height='height'}} {{bind-attr title='caption'}} {{bind-attr alt='caption'}}>
+					<img src="{{ url }}" width="{{ width }}" height="{{ height }}" title="{{ caption }}" alt="{{ caption }}">
 					{{/if}}
 				</a>
 				{{!/link-to}}
@@ -151,8 +131,8 @@
 		{{/if}}
 		{{#if view.isLink}}
 			<header class=post-header>
-				<h2 class=link><a {{bind-attr href='url'}}>{{title}}</a></h2>
-			</div>
+				<h2 class=link><a href="{{ url }}">{{title}}</a></h2>
+			</header>
 			
 			<div class=post-body>
 				{{{description}}}
@@ -194,7 +174,7 @@
 		{{/if}}
 		{{#if view.isAnswer}}
 			<header class=post-header>
-				<h2>{{#if askingUrl}}<a {{bind-attr href='askingUrl'}}>{{askingName}}</a>{{else}}{{askingName}}{{/if}} {{i18n 'asked'}}: <q>{{question}}</q></h2>
+				<h2>{{#if askingUrl}}<a href="{{ askingUrl }}">{{askingName}}</a>{{else}}{{askingName}}{{/if}} {{i18n 'asked'}}: <q>{{question}}</q></h2>
 			</header>
 			
 			<div class=post-body>
@@ -207,8 +187,8 @@
 				<li class=timestamp>{{#link-to 'post' this}}{{view.fromTime}}{{/link-to}}</li>
 				<li class=notes>{{i18n 'noteCount' noteCount argument0='count'}}</li>
 				<li class=type>{{#link-to 'type' type}}{{i18n 'postType.one' type argument0='type'}}{{/link-to}}</li>
-				{{#if rebloggedFromUrl}}<li class=rebloged-from>{{i18n 'rebloggedFrom'}} <a {{bind-attr href='rebloggedFromUrl'}}>{{rebloggedFromName}}</a></li>{{/if}}
-				{{#if sourceUrl}}<li class=source>{{i18n 'source'}} <a {{bind-attr href='sourceUrl'}}>{{sourceTitle}}</a></li>{{/if}}
+				{{#if rebloggedFromUrl}}<li class=rebloged-from>{{i18n 'rebloggedFrom'}} <a href="{{ rebloggedFromUrl }}">{{rebloggedFromName}}</a></li>{{/if}}
+				{{#if sourceUrl}}<li class=source>{{i18n 'source'}} <a href="{{ sourceUrl }}">{{sourceTitle}}</a></li>{{/if}}
 				{{#if tags.length}}
 				<li class=tags>
 					<ul>
@@ -216,17 +196,17 @@
 					</ul>
 				</li>
 				{{/if}}
-				<li class=on-tumblr><a {{bind-attr href='postUrl'}}>{{i18n 'onTumblr'}}</a></li>
-				<li class=reblog><a {{bind-attr href='view.reblogHref'}}>{{i18n 'reblog'}}</a></li>
+				<li class=on-tumblr><a href="{{ postUrl }}">{{i18n 'onTumblr'}}</a></li>
+				<li class=reblog><a href="{{ view.reblogHref }}">{{i18n 'reblog'}}</a></li>
 			</ul>
 		</footer>
 		{{/with}}
 	</script>
 	
 	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js></script>
-	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js></script>
-	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/ember.js/1.9.1/ember.min.js></script>
-	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/ember-data.js/1.0.0-beta.14.1/ember-data.min.js></script>
+	<script defer src=js/ember-template-compiler.js></script>
+	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/ember.js/1.11.0/ember.min.js></script>
+	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/ember-data.js/1.0.0-beta.16.1/ember-data.min.js></script>
 	<script defer src=https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js></script>
 	<script defer src=js/i18n.js></script>
 	<script defer src=js/application.js></script>
